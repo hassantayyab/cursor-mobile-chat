@@ -8,7 +8,7 @@
 This monorepo contains a complete mobile chat viewer for Cursor with real-time sync and safe action triggers:
 
 - **📱 Mobile App (React Native/Expo)** - View threads, messages, trigger actions
-- **🖥️ Desktop Companion (Node CLI)** - Watches Cursor's local SQLite and syncs to server  
+- **🖥️ Desktop Companion (Node CLI)** - Watches Cursor's local SQLite and syncs to server
 - **⚡ Backend Server (Fastify)** - REST API + WebSocket for real-time updates
 - **📦 Shared Packages** - Types, utilities, and data extraction logic
 
@@ -19,35 +19,56 @@ This monorepo contains a complete mobile chat viewer for Cursor with real-time s
 - Node.js ≥18.0.0
 - pnpm ≥8.0.0 (or npm with workspaces)
 - iOS/Android development environment for mobile app
+- Expo Go app on your phone (for mobile testing)
 
-### Installation
+### **🎯 3-Step Setup**
 
 ```bash
-# Clone and install
-git clone <repository-url>
+# 1. Clone and install
+git clone https://github.com/hassantayyab/cursor-mobile-chat.git
 cd cursor-mobile-chat
+pnpm install
 
-# Install dependencies
-pnpm install  # or npm install
-
-# Build all packages
-pnpm build
-
-# Start development servers
+# 2. Start all services (one command!)
 pnpm dev
 ```
 
-### Individual App Commands
+### **📱 Access Your App**
+
+After running `pnpm dev`, you'll have:
+
+- **🌐 API Server**: http://localhost:3001
+- **📚 API Docs**: http://localhost:3001/docs
+- **📱 Mobile App**: http://localhost:8081 (scan QR code with Expo Go app)
+- **🖥️ Desktop Companion**: Ready to extract your Cursor chats
+
+### **⚡ Individual Commands (Alternative)**
 
 ```bash
-# Mobile app (Expo)
-pnpm dev:mobile
+# Option 1: Run everything at once
+pnpm dev
 
-# Server (Fastify)
-pnpm dev:server
+# Option 2: Run services individually (3 separate terminals)
+pnpm --filter server dev      # Terminal 1: Backend API
+pnpm --filter mobile dev      # Terminal 2: Mobile app
+pnpm --filter desktop-companion dev extract --dry  # Terminal 3: Extract chats
+```
 
-# Desktop companion (Node CLI)
-pnpm dev:desktop
+### **🧪 Testing Your Setup**
+
+```bash
+# Test API server
+curl http://localhost:3001/healthz
+
+# Extract your actual Cursor chats
+pnpm --filter desktop-companion dev extract --dry
+
+# Mobile app controls (when Expo is running):
+# Press 'w' = Open in web browser
+# Press 'i' = Open iOS simulator
+# Press 'a' = Open Android emulator
+# Press 'r' = Reload app
+# Scan QR code = Open on phone with Expo Go
 ```
 
 ## 📁 Project Structure
@@ -150,6 +171,7 @@ LOG_LEVEL=info
 ### Mobile App Configuration
 
 Configure in the Settings screen:
+
 - **Server URL** - Your server endpoint (e.g., `http://localhost:3001`)
 - **Auth Token** - Matching token from server config
 
@@ -166,7 +188,7 @@ AUTH_TOKEN=your-secure-token-here
 
 - **React Native/Expo** - Cross-platform mobile with excellent DX
 - **Fastify** - High-performance Node.js server framework
-- **Zod** - Runtime type safety across the entire stack  
+- **Zod** - Runtime type safety across the entire stack
 - **React Query** - Powerful server state management
 - **Zustand** - Lightweight client state management
 - **Tailwind v4** - Modern CSS framework with better performance
@@ -187,7 +209,7 @@ When the server is running, visit `/docs` for interactive Swagger documentation.
 
 - `GET /healthz` - Health check
 - `GET /threads` - List threads with search & pagination
-- `GET /threads/:id` - Get messages for a thread  
+- `GET /threads/:id` - Get messages for a thread
 - `POST /actions/slack` - Trigger Slack mention
 - `POST /actions/github-comment` - Comment on GitHub PR/issue
 - `POST /actions/agents` - Generate Agents deep-link
@@ -214,24 +236,28 @@ pnpm format:check
 ## 🛣️ Roadmap
 
 ### ✅ M0 - Scaffolding (Complete)
+
 - Monorepo setup with all packages and apps
 - Mobile app with navigation and basic UI
-- Server with REST API and WebSocket support  
+- Server with REST API and WebSocket support
 - Desktop companion with data extraction
 - Shared types and comprehensive utilities
 
 ### 🏗️ M1 - Extract & Mirror (Next)
+
 - Complete desktop companion sync logic
 - Server data storage implementation
 - End-to-end data flow testing
 
 ### 📱 M2 - Mobile Viewer (Upcoming)
+
 - Polish mobile UI/UX
 - Add action sheets for safe actions
 - Implement offline caching
 - Search and filtering
 
 ### 🚀 M3 - Production Ready (Future)
+
 - Authentication improvements
 - Error handling and logging
 - Performance optimizations
@@ -242,7 +268,7 @@ pnpm format:check
 1. Clone the repository
 2. Create a feature branch
 3. Make your changes with tests
-4. Run `pnpm lint && pnpm type-check`  
+4. Run `pnpm lint && pnpm type-check`
 5. Submit a pull request
 
 ## 📄 License
