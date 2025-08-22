@@ -1,0 +1,32 @@
+{
+  "name": "@cursor-mobile-chat/server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Backend server with REST APIs and WebSocket support",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cursor-mobile-chat/shared": "workspace:*",
+    "@fastify/cors": "^10.0.1",
+    "@fastify/rate-limit": "^10.1.1",
+    "@fastify/swagger": "^9.1.0",
+    "@fastify/swagger-ui": "^5.0.1",
+    "@fastify/websocket": "^11.0.1",
+    "fastify": "^5.1.0",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "@types/ws": "^8.5.10",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}

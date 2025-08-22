@@ -1,0 +1,30 @@
+{
+  "name": "@cursor-mobile-chat/desktop-companion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Desktop CLI companion that watches Cursor databases and syncs with server",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "cursor-companion": "dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx watch src/cli.ts",
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cursor-mobile-chat/shared": "workspace:*",
+    "@cursor-mobile-chat/extractor": "workspace:*",
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@cursor-mobile-chat/extractor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SQLite parsers and adapters for Cursor chat data extraction",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@cursor-mobile-chat/shared": "workspace:*",
+    "better-sqlite3": "^9.4.0",
+    "chokidar": "^3.5.3",
+    "fast-deep-equal": "^3.1.3",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^20.11.16",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
+  }
+}
